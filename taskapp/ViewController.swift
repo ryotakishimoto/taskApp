@@ -36,12 +36,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //入力した文字をカテゴリー内で検索する
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let realm = try! Realm()
         
         if searchText.isEmpty {
-            taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+            taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)//空っぽだったら表示に変化なし
         } else {
             taskArray = realm
                 .objects(Task.self)
@@ -95,7 +95,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let dateString:String = formatter.string(from: task.date as Date)
         cell.detailTextLabel?.text = dateString
-  
+        
         
         return cell
     }
